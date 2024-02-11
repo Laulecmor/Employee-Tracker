@@ -73,8 +73,8 @@ function addRole() {
     { type: "input", name: "title", message: "Role Title?" },
     { type: "input", name: "salary", message: "Role Salary?" },
     { type: "input", name: "job_title", message: "What is their Job Title?" },
-    { type: "input", name: "department", message: "Which Department?" }
-    { type: "input", name: "department_id", message: "What is their Department ID?" },
+    { type: "input", name: "department", message: "Which Department?" },
+    { type: "input", name: "department_id", message: "What is their Department ID?" } // Added missing comma here
   ]).then(({ title, salary, job_title, department, department_id }) => {
     const roleData = { title, salary, job_title, department, department_id};
     db.query("INSERT INTO role SET ?", roleData, (err, results) => {

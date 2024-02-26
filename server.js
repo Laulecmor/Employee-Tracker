@@ -70,13 +70,11 @@ function addDepartment() {
 
 function addRole() {
   inquirer.prompt([
-    { type: "input", name: "title", message: "Role Title?" },
     { type: "input", name: "salary", message: "Role Salary?" },
     { type: "input", name: "job_title", message: "What is their Job Title?" },
-    { type: "input", name: "department", message: "Which Department?" },
     { type: "input", name: "department_id", message: "What is their Department ID?" } // Added missing comma here
-  ]).then(({ title, salary, job_title, department, department_id }) => {
-    const roleData = { title, salary, job_title, department, department_id};
+  ]).then(({ salary, job_title, department_id }) => {
+    const roleData = { salary, job_title, department_id};
     db.query("INSERT INTO role SET ?", roleData, (err, results) => {
       if (err) throw err;
       console.log(`Added Role!`);
@@ -89,12 +87,10 @@ function addEmployee() {
   inquirer.prompt([
     { type: "input", name: "first_name", message: "Employee First Name?" },
     { type: "input", name: "last_name", message: "Employee Last Name?" },
-    { type: "input", name: "department", message: "What is their Department?" },
-    { type: "input", name: "job_title", message: "What is their Job Title?" },
-    { type: "input", name: "salary", message: "What is their salary?" },
+    { type: "input", name: "role_id", message: "What is their Role ID?" },
     { type: "list", name: "manager", message: "Who is the supervising manager?", choices: ["Lisa Scott", "Anthony Jones", "Bob Smith"] }
-  ]).then(({ first_name, last_name, department, job_title, salary, manager }) => {
-    const employeeData = { first_name, last_name, department_name: department, job_title, salary, manager_name: manager };
+  ]).then(({ first_name, last_name, role_id, manager }) => {
+    const employeeData = { first_name, last_name, role_id, manager};
     db.query("INSERT INTO employee SET ?", employeeData, (err, results) => {
       if (err) throw err;
       console.log(`Added Employee!`);

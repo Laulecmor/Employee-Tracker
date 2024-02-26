@@ -1,6 +1,8 @@
 const { prompt, default: inquirer } = require("inquirer");
 const db = require("./db");
 
+loadMainPrompts();
+
 function loadMainPrompts() {
     prompt([
         {
